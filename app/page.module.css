@@ -1,0 +1,28 @@
+
+.container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+}
+.container h1 {
+    color: red;
+    /* text-align: center; */
+    font-weight: 900;
+    font-size: 2rem;
+}
+
+.container p {
+  /* text-align: center; */
+
+}
+
+.tabs {
+
+width: 100%;
+display: grid; place-items: center;
+background-color: transparent;
+  
+}

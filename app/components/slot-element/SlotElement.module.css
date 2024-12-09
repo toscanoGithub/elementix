@@ -1,0 +1,61 @@
+.slotElement {
+
+    /* text-align: center; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    height: 100%;
+    overflow: hidden;
+
+  }
+
+  .number {
+    align-self: flex-start;
+    font-size: 10px;
+  }
+
+  .symbol {
+    font-weight: 900;
+    font-size: 10px;
+  
+  }
+
+  .name {
+    font-size:7px;
+    font-weight: 700;
+  }
+
+  .category {
+    font-size: 8px;
+    text-wrap: nowrap;
+  }
+
+
+  
+  @media (max-width: 599px) {
+    .number {
+      font-size: 8px;
+    }
+
+    .symbol {
+      font-size: 8px;
+    }
+
+    .slotElement {
+      padding: 0
+    }
+  }
+
+
+  @media (max-width: 899px) {
+    .slotElement {
+    }
+
+    .category, .name {
+      display: none;
+    }
+  }
+  
+  

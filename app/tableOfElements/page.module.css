@@ -1,0 +1,27 @@
+.elementWrapper {
+    
+        margin: 2px;
+        width: 35px;
+        height: 45px; 
+
+}
+
+
+@media (max-width: 599px) {
+  .elementWrapper {
+    width: 30px;
+    height: 35px; 
+  }
+}
+
+@media (min-width: 899px)  {
+  .elementWrapper {
+    margin: 3px;
+    width: 45px;
+    height: 50px; 
+  }
+}
+
+
+
+/* min-width: 600px to max-width: 899px */
