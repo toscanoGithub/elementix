@@ -4,17 +4,10 @@ import React, { useState, useEffect } from 'react';
 import {elements} from "../data/elements"
 import styles from "./page.module.css"
 
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
-import { chunkArray } from '../helpers';
+import { chunkArray, getBgColorForCategory } from '../helpers';
 import SlotElement from '../components/slot-element/SlotElement';
+import Modal from '../components/modal-element/Moda';
+import { Separator } from '@/components/ui/separator';
 
 
 // Define the type for an Element
@@ -50,8 +43,11 @@ interface Element {
 const TableOfElements: React.FC = () => {
   // Define the state variable `data` with the correct type
   const [data, setData] = useState<Element[] | any>([]);
-  const [setshowCardElement, setSetshowCardElement] = useState(false) 
-    
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);  
+  const [modalData, setModalData] = useState<Element>()  
   // Using useEffect to simulate fetching data (or directly setting it)
   useEffect(() => {
     
@@ -82,7 +78,8 @@ const TableOfElements: React.FC = () => {
             >
               <SlotElement name={item?.name} symbol={item?.symbol} number={item?.number} category={item?.category} onSlotElementPress={function (): void {
                 if(item.name) {
-                  console.log(item.name);
+                  setModalData({...item})
+                  openModal()
                 }
                 
               } } />
@@ -90,7 +87,57 @@ const TableOfElements: React.FC = () => {
           ))}
         </div>
       ))}
+<Modal isOpen={isModalOpen} onClose={closeModal}>
+        <div className={styles.topWrapper}>
+        <div style={{backgroundColor: getBgColorForCategory(modalData?.category)}} className={styles.cardHeader}>
+            <h2>{modalData?.name}</h2>
+        </div>
 
+        <div className={styles.numberSymbolRow}>
+          <p style={{backgroundColor: getBgColorForCategory(modalData?.category)}}>{modalData?.number}</p>  
+          <p style={{backgroundColor: getBgColorForCategory(modalData?.category)}}>{modalData?.symbol}</p>
+        </div>
+        </div>
+
+        <div  className={styles.descCaractWrapper}>
+        <div className={styles.description}>
+          <p>{modalData?.summary}</p>
+        </div>
+
+        <div  className={styles.caracteristiques}>
+          <div className={styles.row}>
+            <p>Atomic Mass</p>
+            <span>{modalData?.atomic_mass}</span>
+          </div>
+          <Separator orientation="horizontal" />
+          <div className={styles.row}>
+            <p>Standard State</p>
+            <span>{modalData?.phase}</span>
+          </div>
+          <Separator orientation="horizontal" />
+          <div className={styles.row}>
+            <p>Electron Configuration</p>
+            <span>{modalData?.electron_configuration}</span>
+          </div>
+          <Separator orientation="horizontal" />
+          <div className={styles.row}>
+            <p>Electronegativity (Pauling Scale)</p>
+            <span>{modalData?.electronegativity_pauling}</span>
+          </div>
+          <Separator orientation="horizontal" />
+          <div className={styles.row}>
+            <p>Density</p>
+            <span>{modalData?.density}</span>
+          </div>
+          <Separator orientation="horizontal" />
+          <div className={styles.row}>
+            <p>Discovered By	</p>
+            <span>{modalData?.discovered_by || "Unknown"}</span>
+          </div>
+        </div> 
+        </div> 
+
+      </Modal>
     </div>
   );
 };
