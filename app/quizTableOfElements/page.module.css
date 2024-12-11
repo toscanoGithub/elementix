@@ -5,7 +5,7 @@
   background-color: #FFFFC4;
   border: 1px solid black;
   position: absolute;
-  top: 120px;
+  top: 10px;
   left: 58%;
   transform: translateX(-58%);
   display: flex;
@@ -18,13 +18,19 @@
 }
 
 .startButton {
-  width: 70px;
-  height: 30px;
+  height: 20px;
+  width: 80px;
+  background-color: #292B37;
   position: absolute;
-  top: 230px;
+  top: 120px;
   left: 58%;
   transform: translateX(-58%);
   z-index: 200;
+}
+
+.startButton:hover {
+  background-color: #292B37;
+  opacity: 0.7;
 }
 
 .legendButton {
@@ -37,8 +43,6 @@
 .legendButton:hover {
   background-color: transparent;
 }
-
-
 
 .elementWrapper {
     
@@ -72,7 +76,6 @@
 }
 
 .numberSymbolRow p {
-  
   width: 100px;
   height: 100px;
   display: grid;
@@ -125,12 +128,14 @@
 .caracteristiques {
   padding-left: 10px;
   padding-right: 10px;
-  
-
 }
 
 .table {
-  background-color: transparent; position: absolute; left: 0; top: 100px, 
+  background-color: transparent;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -10px;
 }
 
 
@@ -141,7 +146,7 @@
   }
 
   .table {
-    top: 130px
+    top: 10px
   }
 
   .settings {
@@ -149,7 +154,7 @@
     height: 60px;
     justify-content: center;
     align-items: space-between;
-    top: 150px
+    top: 10px
   }
 
   .legendButton {
@@ -157,11 +162,15 @@
   }
 
   .startButton {
-    top: 220px;
+    top: 80px;
     height: 20px;
-    width: 40px
+    width: 50px;
+    background-color: #292B37;
   }
+
 }
+
+
 
 @media (min-width: 899px)  {
   .elementWrapper {
@@ -169,6 +178,12 @@
     width: 45px;
     height: 50px; 
   }
+
+}
+
+
+.visible {
+  top: 200, 
 }
 
 

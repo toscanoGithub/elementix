@@ -55,9 +55,38 @@ const QuizTableOfElements: React.FC = () => {
   const [modalData, setModalData] = useState<Element>()  
   const [symbolActive, setSymbolActive] = useState(true)
   const [numberActive, setNumberActive] = useState(true)
-  const [buttonState, setButtonState] = useState("Simple")
+  const [buttonState, setButtonState] = useState("Start")
   const { toast } = useToast()
   const [canPlay, setCanPlay] = useState(false)
+  const [slideAmount, setSlideAmount] = useState(-400)
+  // QUIZ started
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // RESET QUIZ
+  const resetQuiz = () => {
+    alert("Reset quiz to implement")
+  }
+
+  // NEXT QUESTION
+  const nextQuestion = () => {
+    
+  }
+  const toggleIsPlaying = () => {
+    if(buttonState === "Start") {
+      setButtonState("Quit")
+      setIsPlaying((prev) => !prev);
+      setSlideAmount(-200)
+       // QuizLogic
+       nextQuestion()
+    } else {
+      resetQuiz()
+      setSlideAmount(-400)
+      setButtonState("Start")
+      setIsPlaying((prev) => !prev);
+    }
+    
+  };
+
 
   // Using useEffect to simulate fetching data (or directly setting it)
   useEffect(() => {
@@ -128,17 +157,44 @@ const QuizTableOfElements: React.FC = () => {
 
 
   const startQuiz = () => {
-    alert("Start quiz")
+    setButtonState(prev => {
+      if(prev === "Start") return "Stop";
+      
+      // Quiz Started
+      toggleIsPlaying()
+
+      return "Start";
+    })
   }
 
   return (
-    <>
-
+    <div style={{position: "relative", width:"100vw"}}>
+{/* This view will toggle visibility  */}
+<div style={{
+        width: "100%",
+        maxWidth: 600,
+        height: 200,
+        padding: 20,
+        backgroundColor: "#F7F7F7",
+        border: "1px solid #ccc",
+        borderRadius: 8,
+        position: "absolute",
+        top: slideAmount,
+        left: "50%",
+        transform: "translateX(-50%)",
+        zIndex: 1000,
+        transitionDuration: "1s"
+  }} >
+        <p>This view slides down from the top!</p>
+    </div>
     <div className={styles.settings}>
       <Button onClick={numberButtonToggle} variant="ghost" style={{color: numberActive ? "#363C4A" : "#363C4A50"}} className={styles.legendButton}>1</Button>
       <Button onClick={symbolButtonToggle} variant="ghost" style={{color: symbolActive ? "#363C4A" : "#363C4A50"}} className={styles.legendButton}>H</Button>
     </div>
-    <Button disabled={!canPlay} onClick={startQuiz} className={styles.startButton}>Start</Button>
+{canPlay && <Button disabled={!canPlay} onClick={toggleIsPlaying} className={styles.startButton}>{buttonState}</Button>}
+
+
+    
 
     <div className={styles.table}>
       {rows.map((row: Element[], rowIndex: number) => (
@@ -166,7 +222,7 @@ const QuizTableOfElements: React.FC = () => {
 
     </div>
     
-    </>
+    </div>
   );
 };
 
