@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import styles from "./page.module.css"
 import ElementInfo from './tableOfElements/page'
 import TableOfElements from './tableOfElements/page'
+import QuizTableOfElements from './quizTableOfElements/page'
 
 function page() {
   return (
@@ -17,7 +18,7 @@ function page() {
           </TabsList>
           <TabsContent value="table"><TableOfElements /></TabsContent>
           <TabsContent value="cards">Cards of elements</TabsContent>
-          <TabsContent value="quiz">Quiz</TabsContent>
+          <TabsContent value="quiz"><QuizTableOfElements /></TabsContent>
         </Tabs>
 
     </div>
