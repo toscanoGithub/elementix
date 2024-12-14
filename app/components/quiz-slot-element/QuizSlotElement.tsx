@@ -46,9 +46,9 @@ const SlotElement: React.FC<SlotElementProps> = ({
 
   let cardColor = 'white';
   if (isGreen) {
-    cardColor = 'green';
+    cardColor = '#8BD6B9';
   } else if (isRed) {
-    cardColor = 'red';
+    cardColor = '#F13434';
   }
 
   return (
