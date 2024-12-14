@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from "./QuizSlotElement.module.css"
-import { getBgColorForCategory } from '@/app/helpers';
+import { getBgColorForCategory, getBGColorFromHex } from '@/app/helpers';
 
 // Define the interface for the element properties
 interface SlotElementProps {
-  onSlotElementPress: () => void; // Function to handle the press event
+  onSlotElementPress: (name: string) => void; // Function to handle the press event
   appearance?: string;
   atomic_mass?: number;
   boil?: number;
@@ -19,7 +19,6 @@ interface SlotElementProps {
   ionization_energies?: number[];
   melt?: number;
   molar_heat?: number;
-  name?: string;
   named_by?: string;
   number?: number;
   period?: number;
@@ -31,18 +30,29 @@ interface SlotElementProps {
   symbol?: string;
   xpos?: number;
   ypos?: number;
+  name: string;
+  isRed: boolean;
+  isGreen: boolean;
 }
 
 const SlotElement: React.FC<SlotElementProps> = ({
   onSlotElementPress,
   number,
-  category,
-  name,
   symbol,
-  
+  name,
+  isRed,
+  isGreen
 }) => {
+
+  let cardColor = 'white';
+  if (isGreen) {
+    cardColor = 'green';
+  } else if (isRed) {
+    cardColor = 'red';
+  }
+
   return (
-    <div onClick={onSlotElementPress}  className={styles.slotElement} >
+    <div style={{backgroundColor: cardColor}} onClick={() => onSlotElementPress(name)}  className={`${styles.slotElement} `} >
       <div className={styles.number}>{number !== 0 ? number : ""}</div>
       <div className={styles.symbol}>{symbol}</div>
     </div>
