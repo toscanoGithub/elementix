@@ -82,6 +82,11 @@ const QuizTableOfElements: React.FC = () => {
   const [redCards, setRedCards] = useState<Set<string>>(new Set());
   const [greenCards, setGreenCards] = useState<Set<string>>(new Set());
 
+  // Hud UI
+  const [score, setScore] = useState(0)
+  const [bestScore, setBestScore] = useState(0)
+  const [lives, setLives] = useState(5)
+
   // Function to pick a random item
   const handlePickRandomItem = () => {
     // Create an instance of RandomPicker with the items array
@@ -156,6 +161,15 @@ const QuizTableOfElements: React.FC = () => {
   // Split the data into chunks of 18 cause we have 18 columns in the periodic table of elements
   const rows: Element[] | any = chunkArray(data, 18);
 
+  const updateHudUI = (correct: boolean) => {
+    if(correct) {
+      setScore(prev => prev + 1) // score++
+    } else {
+      if(lives > 0) {
+        setLives(prev => lives - 1) // lives--
+      }
+    }
+  }
   return (
     <div style={{position: "relative", width:"100vw"}}>
 {/* This view will toggle visibility  */}
@@ -166,7 +180,7 @@ const QuizTableOfElements: React.FC = () => {
           fontSize:24, fontWeight: 900, marginTop: -8,}}>{target?.name}</p>
 
           <div className={styles.hud}>
-            <Hud score={0} highscore={0} lives={5} timer={20} />
+            <Hud score={score} highscore={bestScore} lives={lives} timer={20} />
           </div>
     </div>
     <div className={styles.settings}>
@@ -197,9 +211,11 @@ const QuizTableOfElements: React.FC = () => {
                     if (name === target?.name) {
                       setGreenCards(new Set(greenCards).add(name)); // Add the correct card to greenCards
                       setRedCards(new Set()); // Reset red cards
+                      updateHudUI(true)
                       handlePickRandomItem()
                     } else {
                       setRedCards(prev => new Set(prev).add(name)); // Mark the card as red
+                      updateHudUI(false)
                     }
 
                   } } />
