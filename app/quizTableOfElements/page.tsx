@@ -193,6 +193,7 @@ const QuizTableOfElements: React.FC = () => {
                   number={numberActive ? item.number : 0}
                   category={item?.category}
                   onSlotElementPress={function (name: string): void {
+                    if(name === "no name") return; // without this empty cards turnn red. so do nothing when clicked
                     if (name === target?.name) {
                       setGreenCards(new Set(greenCards).add(name)); // Add the correct card to greenCards
                       setRedCards(new Set()); // Reset red cards
