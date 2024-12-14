@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { useToast } from "@/hooks/use-toast"
 import RandomPicker from '../quiz-helpers/pick-question';
 import Hud from '../components/hud/hud';
+import { getLocalStorage, setLocalStorage } from '../quiz-helpers/local-storage';
 
 // Define the type for an Element
 interface Element {
@@ -161,9 +162,21 @@ const QuizTableOfElements: React.FC = () => {
   // Split the data into chunks of 18 cause we have 18 columns in the periodic table of elements
   const rows: Element[] | any = chunkArray(data, 18);
 
+  useEffect(() => {
+   const savedBestScore = getLocalStorage("bestScore")
+   if(savedBestScore) {
+    setBestScore(parseInt(savedBestScore, 10));
+  }  
+  }, [])
+  
   const updateHudUI = (correct: boolean) => {
     if(correct) {
       setScore(prev => prev + 1) // score++
+
+      if (score >= bestScore) {
+        setBestScore(score + 1); // setScore above does not take place immediatelly so use score + 1 to setBestScore
+        setLocalStorage('bestScore', (score + 1).toString()); // Save new best score to localStorage
+      }
     } else {
       if(lives > 0) {
         setLives(lives - 1) // lives--

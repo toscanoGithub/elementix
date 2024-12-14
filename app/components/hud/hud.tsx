@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Lives from './Lives';
+import { getLocalStorage } from '@/app/quiz-helpers/local-storage';
 
 // Define the types for the props
 interface HudProps {
@@ -11,6 +12,9 @@ interface HudProps {
 
 const Hud: React.FC<HudProps> = ({ score, highscore, lives, timer }) => {
     
+ 
+ 
+  
     
   return (
     <>
