@@ -9,6 +9,7 @@ import QuizSlotElement from '../components/quiz-slot-element/QuizSlotElement';
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/hooks/use-toast"
 import RandomPicker from '../quiz-helpers/pick-question';
+import Hud from '../components/hud/hud';
 
 // Define the type for an Element
 interface Element {
@@ -163,6 +164,10 @@ const QuizTableOfElements: React.FC = () => {
            fontSize: 14, fontWeight: 300, }}>Find</p>
            <p style={{color:"#363C4A", textAlign:"center",
           fontSize:24, fontWeight: 900, marginTop: -8,}}>{target?.name}</p>
+
+          <div className={styles.hud}>
+            <Hud score={0} highscore={0} lives={5} timer={20} />
+          </div>
     </div>
     <div className={styles.settings}>
       <Button onClick={numberButtonToggle} variant="ghost" style={{color: numberActive ? "#363C4A" : "#363C4A50"}} className={styles.legendButton}>1</Button>
