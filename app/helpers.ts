@@ -39,3 +39,7 @@
       return "transparent";
     }
   }
+
+  export const getBGColorFromHex = (hex: any) =>  {
+    return "#" + hex;
+  }
