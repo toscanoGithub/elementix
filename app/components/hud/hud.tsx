@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Lives from './Lives';
 
 // Define the types for the props
 interface HudProps {
@@ -9,11 +10,13 @@ interface HudProps {
 }
 
 const Hud: React.FC<HudProps> = ({ score, highscore, lives, timer }) => {
+    
+    
   return (
     <>
       <h6>Score: {score}</h6>
       <h6>Best: {highscore}</h6>
-      <h6>Lives: {lives}</h6>
+      <Lives totalLives={5} lives={lives}/>
       <h6>Timer: {timer}</h6>
     </>
   );

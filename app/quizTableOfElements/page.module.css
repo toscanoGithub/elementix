@@ -21,12 +21,12 @@
 
 
 .settings {
-  width: 80px;
-  height: 100px;
+  width: 70px;
+  height: 90px;
   background-color: #FFFFC4;
   border: 1px solid black;
   position: absolute;
-  top: 10px;
+  top: 20px;
   left: 58%;
   transform: translateX(-58%);
   display: flex;
@@ -119,8 +119,6 @@
   border-bottom-right-radius: 10px;
   margin-top: 0px;
   border: 1px solid #dddddd;
-  
-  
 }
 
 .topWrapper {
@@ -158,9 +156,6 @@
   top: -10px;
 }
 
-
-
-
 @media (max-width: 599px) {
   .elementWrapper {
     width: 30px;
@@ -176,7 +171,7 @@
     height: 80px;
     justify-content: center;
     align-items: space-between;
-    top: 40px
+    top: 35px
   }
 
   .legendButton {
@@ -186,18 +181,12 @@
   .startButton {
     top: 125px;
     height: 20px;
-    width: 50px;
+    width: 60px;
     background-color: #292B37;
   }
-
-  .slidingPanel {
-    /* height: 200px;; */
-  }
-
 }
 
 @media (min-width:600px) and (max-width:898px) {
-
   .settings {
     width: 80px;
     height: 100px;

@@ -166,7 +166,8 @@ const QuizTableOfElements: React.FC = () => {
       setScore(prev => prev + 1) // score++
     } else {
       if(lives > 0) {
-        setLives(prev => lives - 1) // lives--
+        setLives(lives - 1) // lives--
+        
       }
     }
   }
