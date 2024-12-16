@@ -11,6 +11,7 @@ import { useToast } from "@/hooks/use-toast"
 import RandomPicker from '../quiz-helpers/pick-question';
 import Hud from '../components/hud/hud';
 import { getLocalStorage, setLocalStorage } from '../quiz-helpers/local-storage';
+import { useTimerContext } from '../contexts/TimerContext';
 
 // Define the type for an Element
 interface Element {
@@ -43,6 +44,8 @@ interface Element {
 }
 
 const QuizTableOfElements: React.FC = () => {
+  const { timeLeft, isRunning, startTimer, stopTimer, restartTimer } = useTimerContext();
+
   // Define the state variable `data` with the correct type
   const [data, setData] = useState<Element[] | any>([]);
   const [symbolActive, setSymbolActive] = useState(true)
@@ -51,11 +54,13 @@ const QuizTableOfElements: React.FC = () => {
   const { toast } = useToast()
   const [canPlay, setCanPlay] = useState(false)
   const [slideAmount, setSlideAmount] = useState(-400)
-
-  // RESET QUIZ
+  // RESET QUIZ ----- called when no more lives
   const resetQuiz = () => {
+    setButtonState("Start")
+    stopTimer()
     setRedCards(new Set()); 
     setGreenCards(new Set()); 
+    setSlideAmount(-400)
   }
 
   // NEXT QUESTION
@@ -65,19 +70,34 @@ const QuizTableOfElements: React.FC = () => {
 
  
   const toggleIsPlaying = () => {
+    
+    setScore(0)
+    setLives(5)
+    stopTimer()
+
     if(buttonState === "Start") {
       setButtonState("Quit")
       setSlideAmount(-170)
+      startTimer()
        // QuizLogic
-       nextQuestion()
+       setTimeout(() => {
+        nextQuestion()
+       }, 0);
     } else {
-      resetQuiz()
-      setSlideAmount(-400)
       setButtonState("Start")
+      resetQuiz()
+      stopTimer()
+      
     }
   };
 
 
+  useEffect(() => {
+    if(!isRunning) return;
+    updateHudUI(false)
+    
+  }, [timeLeft === 0])
+  
   
   const [target, setTarget] = useState<Element | null>(null);
   const [redCards, setRedCards] = useState<Set<string>>(new Set());
@@ -87,19 +107,19 @@ const QuizTableOfElements: React.FC = () => {
   const [score, setScore] = useState(0)
   const [bestScore, setBestScore] = useState(0)
   const [lives, setLives] = useState(5)
+  
 
   // Function to pick a random item
   const handlePickRandomItem = () => {
-    // Create an instance of RandomPicker with the items array
-    const picker = new RandomPicker(data);
+    const picker = new RandomPicker(data);    
     setTarget(picker.pick() as Element)
+    // restartTimer()
 
   };
 
   useEffect(() => {
     // Self-invoking function
   (() => {
-    console.log("This function is invoked immediately!");
     // Perform any initialization logic here
     toast({
       title: "Choose your level",
@@ -172,7 +192,6 @@ const QuizTableOfElements: React.FC = () => {
   const updateHudUI = (correct: boolean) => {
     if(correct) {
       setScore(prev => prev + 1) // score++
-
       if (score >= bestScore) {
         setBestScore(score + 1); // setScore above does not take place immediatelly so use score + 1 to setBestScore
         setLocalStorage('bestScore', (score + 1).toString()); // Save new best score to localStorage
@@ -180,10 +199,19 @@ const QuizTableOfElements: React.FC = () => {
     } else {
       if(lives > 0) {
         setLives(lives - 1) // lives--
-        
-      }
+      } 
     }
   }
+
+
+  useEffect(() => {
+    if(lives === 0) {
+      
+      toggleIsPlaying()
+    }
+  }, [lives <= 0])
+  
+  
   return (
     <div style={{position: "relative", width:"100vw"}}>
 {/* This view will toggle visibility  */}
@@ -194,7 +222,7 @@ const QuizTableOfElements: React.FC = () => {
           fontSize:24, fontWeight: 900, marginTop: -8,}}>{target?.name}</p>
 
           <div className={styles.hud}>
-            <Hud score={score} highscore={bestScore} lives={lives} timer={20} />
+            <Hud score={score} highscore={bestScore} lives={lives}/>
           </div>
     </div>
     <div className={styles.settings}>
@@ -221,7 +249,7 @@ const QuizTableOfElements: React.FC = () => {
                   number={numberActive ? item.number : 0}
                   category={item?.category}
                   onSlotElementPress={function (name: string): void {
-                    if(name === "no name") return; // without this empty cards turnn red. so do nothing when clicked
+                    if(name === "no name" || !isRunning) return; // without this empty cards turnn red. so do nothing when clicked
                     if (name === target?.name) {
                       setGreenCards(new Set(greenCards).add(name)); // Add the correct card to greenCards
                       setRedCards(new Set()); // Reset red cards
