@@ -1,4 +1,5 @@
 // Lives.tsx
+
 import React from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'; // filled and outlined hearts
 
