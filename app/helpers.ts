@@ -11,9 +11,7 @@
   };
 
 
-  export const getBgColorForCategory = (category?: string) => {
-    console.log(category);
-    
+  export const getBgColorForCategory = (category?: string) => {    
     switch (category) {
       case "nonmetal":
         return "#FFFFC4";

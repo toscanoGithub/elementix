@@ -55,10 +55,7 @@ const TableOfElements: React.FC = () => {
     
   }, []); // Empty dependency array ensures this effect runs once when the component mounts
 
-  const handlePress = () => {
-    console.log("slot pressed");
-    
-  }
+  
 
   // Split the data into chunks of 18
   const rows: Element[] | any = chunkArray(data, 18);

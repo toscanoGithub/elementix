@@ -8,7 +8,7 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
-  transition-duration: 1s;
+  transition-duration: 500ms;
   height: 180px;
   /* padding-top: 6%; */
   display: flex;
