@@ -1,3 +1,5 @@
+// SlotElement.tsx
+
 import React from 'react';
 import styles from "../slot-element/SlotElement.module.css"
 import { getBgColorForCategory } from '@/app/helpers';

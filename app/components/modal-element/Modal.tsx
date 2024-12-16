@@ -1,3 +1,5 @@
+// Modal.tsx
+
 import React, { useEffect } from 'react';
 import styles from './Modal.module.css';  // Import the CSS module
 

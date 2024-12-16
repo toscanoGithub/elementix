@@ -1,5 +1,4 @@
-
-
+// helpers.ts
 
   // Function to split the array into chunks of a given size
   export const chunkArray = <T,>(array: T[], size: number): T[][] => {
@@ -11,6 +10,7 @@
   };
 
 
+  // Each color defines a category
   export const getBgColorForCategory = (category?: string) => {    
     switch (category) {
       case "nonmetal":
@@ -38,6 +38,7 @@
     }
   }
 
+  // get a color from hex format
   export const getBGColorFromHex = (hex: any) =>  {
     return "#" + hex;
   }

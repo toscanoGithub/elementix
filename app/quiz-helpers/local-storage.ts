@@ -1,4 +1,5 @@
-// utils/localStorage.ts
+// local-storage.ts
+
 export const getLocalStorage = (key: string): string | null => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem(key);

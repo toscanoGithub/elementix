@@ -1,3 +1,4 @@
+// page.tsx >>> TableOfElements
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -6,7 +7,7 @@ import styles from "./page.module.css"
 
 import { chunkArray, getBgColorForCategory } from '../helpers';
 import SlotElement from '../components/slot-element/SlotElement';
-import Modal from '../components/modal-element/Moda';
+import Modal from '../components/modal-element/Modal';
 import { Separator } from '@/components/ui/separator';
 
 

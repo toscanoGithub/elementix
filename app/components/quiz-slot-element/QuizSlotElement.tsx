@@ -1,6 +1,7 @@
+// QuizSlotElement.tsx
+
 import React, { useState } from 'react';
 import styles from "./QuizSlotElement.module.css"
-import { getBgColorForCategory, getBGColorFromHex } from '@/app/helpers';
 
 // Define the interface for the element properties
 interface SlotElementProps {

@@ -1,4 +1,4 @@
-// RandomPicker.ts
+// pick-question.ts
 
 export default class RandomPicker<T> {
   private items: T[];
