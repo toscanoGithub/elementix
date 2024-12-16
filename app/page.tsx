@@ -13,7 +13,7 @@ function page() {
       <h1 >Elementix</h1>
       <p>Explore the periodic table of element and test your knowlege in a fun way</p>
         <Tabs className={styles.tabs} defaultValue="table" >
-          <TabsList>
+          <TabsList style={{zIndex: 1000}}>
             <TabsTrigger  value="table">Table</TabsTrigger>
             <TabsTrigger value="cards">Cards</TabsTrigger>
             <TabsTrigger value="quiz">Quiz</TabsTrigger>

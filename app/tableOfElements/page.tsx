@@ -9,7 +9,7 @@ import { chunkArray, getBgColorForCategory } from '../helpers';
 import SlotElement from '../components/slot-element/SlotElement';
 import Modal from '../components/modal-element/Modal';
 import { Separator } from '@/components/ui/separator';
-
+import ProgressAnimation from '../components/lottie/ProgressAnimation';
 
 // Define the type for an Element
 interface Element {
@@ -49,20 +49,40 @@ const TableOfElements: React.FC = () => {
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);  
   const [modalData, setModalData] = useState<Element>()  
+  const [progress, setProgress] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState(true)
+
   // Using useEffect to simulate fetching data (or directly setting it)
   useEffect(() => {
-    
     setData(elements)
     
-  }, []); // Empty dependency array ensures this effect runs once when the component mounts
+  }, [data]); // Empty dependency array ensures this effect runs once when the component mounts
 
   
+  useEffect(() => {
+    // Simulating progress (0 to 1 over 3 seconds)
+    const interval = setInterval(() => {
+      setProgress((prevProgress) => {
+        if (prevProgress < 1) {
+          return Math.min(prevProgress + 0.01, 1); // Increment progress
+        }
+        clearInterval(interval);
+        setIsLoading(false)
+        return 1;
+      });
+    }, 30);  // Update progress every 50ms
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
 
   // Split the data into chunks of 18
   const rows: Element[] | any = chunkArray(data, 18);
 
   return (
-    <div style={{width: "100%", marginTop: -15, backgroundColor:"transparent"}}>
+    <>
+      
+    {
+      !isLoading ? <div style={{width: "100%",  marginTop: -40, backgroundColor:"transparent"}}>
       {rows.map((row: Element[], rowIndex: number) => (
         <div key={rowIndex} style={{ display: 'flex', justifyContent: 'center', width:"100vw" }}>
           {row.map((item: Element, index: number) => (
@@ -74,6 +94,7 @@ const TableOfElements: React.FC = () => {
                
               }}
             >
+  
               <SlotElement name={item?.name} symbol={item?.symbol} number={item?.number} category={item?.category} onSlotElementPress={function (): void {
                 if(item.name) {
                   setModalData({...item})
@@ -85,23 +106,23 @@ const TableOfElements: React.FC = () => {
           ))}
         </div>
       ))}
-<Modal isOpen={isModalOpen} onClose={closeModal}>
+  <Modal isOpen={isModalOpen} onClose={closeModal}>
         <div className={styles.topWrapper}>
         <div style={{backgroundColor: getBgColorForCategory(modalData?.category)}} className={styles.cardHeader}>
             <h2>{modalData?.name}</h2>
         </div>
-
+  
         <div className={styles.numberSymbolRow}>
           <p style={{backgroundColor: getBgColorForCategory(modalData?.category)}}>{modalData?.number}</p>  
           <p style={{backgroundColor: getBgColorForCategory(modalData?.category)}}>{modalData?.symbol}</p>
         </div>
         </div>
-
+  
         <div  className={styles.descCaractWrapper}>
         <div className={styles.description}>
           <p>{modalData?.summary}</p>
         </div>
-
+  
         <div  className={styles.caracteristiques}>
           <div className={styles.row}>
             <p>Atomic Mass</p>
@@ -134,9 +155,11 @@ const TableOfElements: React.FC = () => {
           </div>
         </div> 
         </div> 
-
+  
       </Modal>
-    </div>
+    </div> : <div className={styles.progressAnimationWrapper}><ProgressAnimation progress={10} /></div>
+    }
+  </>
   );
 };
 

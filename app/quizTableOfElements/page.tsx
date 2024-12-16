@@ -215,7 +215,7 @@ const QuizTableOfElements: React.FC = () => {
   
   
   return (
-    <div style={{position: "relative", width:"100vw"}}>
+    <div style={{position: "relative", width:"100vw", marginTop: -20}}>
 {/* This view will toggle visibility  */}
 <div style={{top: slideAmount}} className={styles.slidingPanel} >
         <p style={{color:"#363C4A", textAlign:"center",

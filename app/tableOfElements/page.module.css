@@ -1,9 +1,14 @@
+.progressAnimationWrapper {
+  width: 100%;
+  height: 70vh;
+  display: grid;
+  place-items: center;
+}
+
 .elementWrapper {
-    
         margin: 2px;
         width: 35px;
         height: 45px; 
-
 }
 
 .row {

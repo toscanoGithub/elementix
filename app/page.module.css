@@ -11,12 +11,12 @@
     color: red;
     /* text-align: center; */
     font-weight: 900;
-    font-size: 2rem;
+    font-size: 50px;
 }
 
 .container p {
   text-align: center;
-  margin: 5px 10px;
+  margin:-20px 10px 10px;
 
 }
 
