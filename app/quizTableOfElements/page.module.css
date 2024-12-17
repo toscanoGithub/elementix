@@ -2,7 +2,7 @@
   width: 100%;
   max-width: 600px;
   /* height: 140px; */
-  background-color: #8BD6B9;
+  background-color: #3C7CB0;
   border: 1px solid #ccc;
   border-radius: 8px;
   left: 50%;
@@ -237,7 +237,7 @@
   height: 30%;
   width: 100%;
   border-top: 1px solid #ffffff50;
-  background-color: #8BD6B9;
+  background-color: #3C7CB0;
   display: flex;
   justify-content: space-between;
   align-items: center;
