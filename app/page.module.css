@@ -1,28 +1,35 @@
 
 .container {
-  width: 100vw;
+  /* width: 100vw; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-bottom: 10px;
+  background-color: #ffffff;
+  flex: 1
 }
 .container h1 {
-    color: red;
-    /* text-align: center; */
-    font-weight: 900;
-    font-size: 50px;
+    color: #3C7CB0;
+    text-align: center;
+    font-weight: 300;
+    font-size: 40px;
+
 }
 
 .container p {
   text-align: center;
-  margin:-20px 10px 10px;
+  /* margin:-10px 10px 10px; */
+  font-size: 10px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  margin-top: 10px;
 
 }
 
 .tabs {
-width: 100%;
+width: 100vw;
 display: grid; place-items: center;
-background-color: transparent;
-  
+/* overflow-x: hidden; */
 }
+

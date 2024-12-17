@@ -127,7 +127,7 @@ const QuizTableOfElements: React.FC = () => {
       title: "Choose your level",
       description: "Toggle Number and Symbol as you want",
       style: {
-        backgroundColor: '#8BD6B9',
+        backgroundColor: '#3C7CB0',
         position: "fixed",
         top: 0, 
         left: 0, right: 0,
@@ -193,6 +193,7 @@ const QuizTableOfElements: React.FC = () => {
   
   const updateHudUI = (correct: boolean) => {
     if(correct) {
+      restartTimer()
       setScore(prev => prev + 1) // score++
       if (score >= bestScore) {
         setBestScore(score + 1); // setScore above does not take place immediatelly so use score + 1 to setBestScore
