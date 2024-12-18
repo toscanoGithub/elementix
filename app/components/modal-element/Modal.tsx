@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import styles from './Modal.module.css';  // Import the CSS module
+import { RiCloseCircleFill } from "react-icons/ri";
 
 interface ModalProps {
   isOpen: boolean;               // To control the modal's open/close state
@@ -39,7 +40,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
     >
       <div className={`${styles.modalContent} ${isOpen ? styles.open : ''}`}>
         <button className={styles.modalCloseBtn} onClick={onClose}>
-          &times;
+        <RiCloseCircleFill  size={20} />
+
         </button>
         {children}
       </div>

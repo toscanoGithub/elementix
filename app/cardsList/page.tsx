@@ -85,7 +85,7 @@ const CardsList = () =>  {
 
   return (
     <>
-    <button onClick={() => scrollToCardByName("francium")} style={{position: "sticky", left: 10,}}>Go to Oxygen</button>
+    <button onClick={() => scrollToCardByName("francium")} style={{position: "sticky", left: 10,}}>Go to Francium</button>
     <div style={{width: "16100%"}}  className={styles.cards}>
       {
         filteredCards.map((element, index) => {          
