@@ -10,6 +10,7 @@ import SlotElement from '../components/slot-element/SlotElement';
 import Modal from '../components/modal-element/Modal';
 import { Separator } from '@/components/ui/separator';
 import ProgressAnimation from '../components/lottie/ProgressAnimation';
+import CardElement from '../components/card-element/page';
 
 // Define the type for an Element
 interface Element {
@@ -40,6 +41,8 @@ interface Element {
   xpos?: number;
   ypos?: number;
 }
+
+
 
 const TableOfElements: React.FC = () => {
   // Define the state variable `data` with the correct type
@@ -107,54 +110,14 @@ const TableOfElements: React.FC = () => {
         </div>
       ))}
   <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <div className={styles.topWrapper}>
-        <div style={{backgroundColor: getBgColorForCategory(modalData?.category)}} className={styles.cardHeader}>
-            <h2>{modalData?.name}</h2>
-        </div>
-  
-        <div className={styles.numberSymbolRow}>
-          <p style={{backgroundColor: getBgColorForCategory(modalData?.category)}}>{modalData?.number}</p>  
-          <p style={{backgroundColor: getBgColorForCategory(modalData?.category)}}>{modalData?.symbol}</p>
-        </div>
-        </div>
-  
-        <div  className={styles.descCaractWrapper}>
-        <div className={styles.description}>
-          <p>{modalData?.summary}</p>
-        </div>
-  
-        <div  className={styles.caracteristiques}>
-          <div className={styles.row}>
-            <p>Atomic Mass</p>
-            <span>{modalData?.atomic_mass}</span>
-          </div>
-          <Separator orientation="horizontal" />
-          <div className={styles.row}>
-            <p>Standard State</p>
-            <span>{modalData?.phase}</span>
-          </div>
-          <Separator orientation="horizontal" />
-          <div className={styles.row}>
-            <p>Electron Configuration</p>
-            <span>{modalData?.electron_configuration}</span>
-          </div>
-          <Separator orientation="horizontal" />
-          <div className={styles.row}>
-            <p>Electronegativity (Pauling Scale)</p>
-            <span>{modalData?.electronegativity_pauling}</span>
-          </div>
-          <Separator orientation="horizontal" />
-          <div className={styles.row}>
-            <p>Density</p>
-            <span>{modalData?.density}</span>
-          </div>
-          <Separator orientation="horizontal" />
-          <div className={styles.row}>
-            <p>Discovered By	</p>
-            <span>{modalData?.discovered_by || "Unknown"}</span>
-          </div>
-        </div> 
-        </div> 
+        <CardElement 
+        number={modalData?.number}
+        name={modalData?.name} symbol={modalData?.symbol} category={modalData?.category} summary={modalData?.summary} atomic_mass={modalData?.atomic_mass} phase={modalData?.phase} density={modalData?.density} electron_configuration={modalData?.electron_configuration} electronegativity_pauling={modalData?.electronegativity_pauling} discovered_by={modalData?.discovered_by} source={modalData?.source}
+        
+        
+        
+        
+        />
   
       </Modal>
     </div> : <div className={styles.progressAnimationWrapper}><ProgressAnimation progress={10} /></div>

@@ -1,0 +1,137 @@
+
+.cards {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 1rem;
+    height: 70vh;
+    margin-top: 1vh;
+    z-index: 10;
+    margin-left: 10px;
+    margin-right: 10px;
+  
+  }
+  
+  .card {
+    overflow: hidden;;
+    height: 100%;
+    border: 1px solid #111ccc30;
+    border-radius: 30px;
+    font-family: Lato;
+    
+  }
+  
+  .cardHeader {
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding-bottom: 30px;
+
+  }
+  
+  .cardHeader h3 {
+    color: black;
+    font-weight: 900;
+    font-size: 24px;
+  }
+  
+  .rownumsymbol {
+    display: flex; justify-content: space-around; align-items: center;
+    width: 100%;
+    position: sticky;
+    z-index: 1000;
+    top: -50px;
+  
+  }
+  
+  .rownumsymbol .number, .rownumsymbol .symbol {
+    font-weight: 900;
+    height: 60px;
+    width: 60px;
+    display: grid; place-items: center;
+    margin-top: -20px;
+    position: absolute;
+    bottom: -70px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  
+  }
+  .rownumsymbol .number {
+    left: 25%;
+    transform: translateX(-25%);
+  }
+  
+  .rownumsymbol .symbol {
+    right: 25%;
+    transform: translateX(25%);
+  }
+  
+  .summary {
+    padding-top: 10vh;  
+    padding-left: 5px;  
+    padding-right: 5px;
+  }
+  
+  .cardBody {
+    height: 100%;
+    overflow-y: scroll;
+    background-color: white;
+    
+  }
+  
+  .summary p {
+    text-align: left !important;
+    align-self: flex-start;
+    font-size: 12px;
+    color: #666A76;
+    
+  }
+  
+  .caracteristics {
+    flex: 1;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .caracteristics h3 {
+    font-weight: 900;
+    color: black;
+    font-size: 16px;
+    padding-left: 5px;
+  }
+  
+  .caracteristicsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-right: 0;
+  }
+  
+  .caracteristics .table {
+    padding-top: 30px;
+    height: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    overflow-y: scroll;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    
+  
+    
+  }
+  
+  .row p {
+    overflow-x: scroll;
+    text-wrap: nowrap;
+  }
+  
+  
+  
+  
+  
+  

@@ -25,7 +25,6 @@
   
   /* Modal content styles */
   .modalContent {
-    background-color: #F7F7F7;
     border-radius: 30px;
     width: 80%;
     max-width: 500px;
@@ -33,11 +32,12 @@
     transition: transform 0.3s ease-in-out;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     /* height: 80vh; */
-    position: relative;
+    
   }
   
   .modalContent.open {
     transform: translateY(0); /* Slide down into view */
+    position: relative;
   }
   
   /* Close button styles */
@@ -47,8 +47,8 @@
     right: 10px;
     background: none;
     border: none;
-    font-size: 60px;
-    color: #ccc;
+    /* font-size: 10px; */
+    color: #3D474C70;
     cursor: pointer;
     z-index: 100;
     transition: all 200ms ease-in-out;
