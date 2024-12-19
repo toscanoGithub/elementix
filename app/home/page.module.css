@@ -1,0 +1,31 @@
+.container {
+    max-width: 600px;
+    padding: 20px;
+}
+
+.container h2 {
+    color: red;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.container p {
+    text-align: left;
+    font-weight: 200;
+    font-size: small
+}
+
+.footer {
+    background-color: #3C7CB0;
+    display: grid;
+    place-items: center;
+    flex: 1;
+
+}
+
+.footer p {
+    font-size: small;
+    font-weight: 100;
+    color: white;
+
+}
