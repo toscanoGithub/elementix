@@ -48,4 +48,13 @@
   .icon {
     font-size: 18px;
   }
+
+  @media (min-width: 599px) {
+
+    .container {
+      right: 20%
+    }
+
+
+  }
   

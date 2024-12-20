@@ -36,6 +36,8 @@ interface SlotElementProps {
   isHilighted: boolean
 }
 
+
+
 const SlotElement: React.FC<SlotElementProps> = ({
   onSlotElementPress,
   number,
@@ -45,8 +47,12 @@ const SlotElement: React.FC<SlotElementProps> = ({
   isHilighted,
   
 }) => {
+
+
   return (
-    <div onClick={onSlotElementPress} style={{backgroundColor: getBgColorForCategory(category), }}
+    <div onClick={onSlotElementPress} style={{backgroundColor: getBgColorForCategory(category),
+      animationDelay: `${Math.random() * 0.7}s `, // animation name slideIn
+     }}
     className={`${isHilighted ? `${styles.slotElement} ${styles.animate} ` : styles.slotElement}`}
     >
       <div className={styles.number}>{number}</div>

@@ -6,10 +6,11 @@
 }
 
 .elementWrapper {
-        margin: 2px;
-        width: 35px;
-        height: 45px; 
+  margin: 2px;
+  width: 35px;
+  height: 45px; 
 }
+
 
 .row {
   display: flex;
@@ -110,4 +111,3 @@
 
 
 
-/* min-width: 600px to max-width: 899px */

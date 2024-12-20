@@ -1,6 +1,5 @@
 .slotElement {
-
-    /* text-align: center; */
+    border-radius: 3px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,9 +7,18 @@
     padding: 2px;
     height: 100%;
     overflow: hidden;
-    
-
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideIn ease-in-out forwards;
   }
+
+  /* Animate slots to slide in */
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
   .number {
     align-self: flex-start;
@@ -61,20 +69,24 @@
 
 
   .animate {
-    animation: animateSlot 3s ease-in-out;
+    transform: translateY(0);
+    z-index: 1000;
+    opacity: 1;
+    animation: animateSlot 2s ease-in;
     /* background-color: #8BD6B9 !important; */
-    border-radius: 3px;
+    
     box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(255, 0, 0, 0.9) 0px 0px 0px 1px;
   
   
   }
 
   @keyframes animateSlot {
+
     0% {
       transform: scale(1);
     }
     50% {
-      transform: scale(2);
+      transform: scale(1.5);
     }
     100% {
       transform: scale(1);
