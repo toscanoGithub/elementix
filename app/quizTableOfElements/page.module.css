@@ -49,6 +49,17 @@
   z-index: 200;
 }
 
+.info {
+  height: 20px;
+  width: 80px;
+  background-color: #292B37;
+  position: absolute;
+  top: 120px;
+  left: 58%;
+  transform: translateX(-58%);
+  z-index: 200;
+}
+
 .startButton:hover {
   background-color: #292B37;
   opacity: 0.7;
@@ -184,6 +195,17 @@
     width: 60px;
     background-color: #292B37;
   }
+
+  .info {
+    top: 125px;
+    height: 20px;
+    width: 60px;
+    background-color: #292B37;
+    color: #ffffff;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 5px;
+  }
 }
 
 @media (min-width:600px) and (max-width:898px) {
@@ -196,6 +218,10 @@
   }
 
   .startButton {
+    top: 160px
+  }
+
+  .info {
     top: 160px
   }
 
