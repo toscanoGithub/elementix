@@ -73,6 +73,7 @@ const QuizTableOfElements: React.FC = () => {
  
   const toggleIsPlaying = () => {
     
+    setIsPlaying(!isPlaying)
     setScore(0)
     setLives(5)
     stopTimer()
@@ -104,7 +105,7 @@ const QuizTableOfElements: React.FC = () => {
   const [target, setTarget] = useState<Element | null>(null);
   const [redCards, setRedCards] = useState<Set<string>>(new Set());
   const [greenCards, setGreenCards] = useState<Set<string>>(new Set());
-
+  const [isPlaying, setIsPlaying] = useState(false) // prevent user to toggle level while playing
   // Hud UI
   const [score, setScore] = useState(0)
   const [bestScore, setBestScore] = useState(0)
@@ -174,10 +175,12 @@ const QuizTableOfElements: React.FC = () => {
   
 
   const numberButtonToggle = () => {
+    if(isPlaying) return;
     setNumberActive(prev => !prev)
   }
 
   const symbolButtonToggle = () => {
+    if(isPlaying) return;
     setSymbolActive(prev => !prev)
   }
 
@@ -190,11 +193,33 @@ const QuizTableOfElements: React.FC = () => {
     setBestScore(parseInt(savedBestScore, 10));
   }  
   }, [])
+
+  const updateScore = () => {
+    switch (level) {
+      case "Easy":
+        setScore(prev => prev + 1)
+        break;
+      case "Moderate":
+        setScore(prev => prev + 2)
+        break;
+        case "Challenging":
+      setScore(prev => prev + 3)
+      break;
+      case "Difficult":
+      setScore(prev => prev + 5)
+      break;
+    
+      default:
+        setScore(prev => prev + 1)
+        break;
+    }
+  }
   
   const updateHudUI = (correct: boolean) => {
     if(correct) {
       restartTimer()
-      setScore(prev => prev + 1) // score++
+      // setScore(prev => prev + 1) // score++
+      updateScore()
       if (score >= bestScore) {
         setBestScore(score + 1); // setScore above does not take place immediatelly so use score + 1 to setBestScore
         setLocalStorage('bestScore', (score + 1).toString()); // Save new best score to localStorage
@@ -214,11 +239,29 @@ const QuizTableOfElements: React.FC = () => {
     }
   }, [lives <= 0])
   
+  const [level, setLevel] = useState("Easy")
+  const updateLevel = () => {
+    if(numberActive && symbolActive) {
+      setLevel("Easy")
+    } else if(!numberActive && symbolActive) {
+      setLevel("Moderate")
+    } else if(numberActive && !symbolActive) {
+      setLevel("Challenging")
+    } else {
+      setLevel("Difficult")
+    }
+  }
+
+  useEffect(() => {
+    updateLevel()
+  }, [numberActive, symbolActive])
+  
   
   return (
     <div style={{position: "relative", width:"100vw", marginTop: -20}}>
 {/* This view will toggle visibility  */}
-<div style={{top: slideAmount}} className={styles.slidingPanel} >
+<div style={{top: slideAmount, position:"relative"}} className={styles.slidingPanel} >
+  <h6 style={{position: "absolute", left: 0, top: 50, backgroundColor: "#ffffff", fontSize: 12, padding: "0 8px", borderRadius: 2}}>{level}</h6>
         <p style={{color:"#363C4A", textAlign:"center",
            fontSize: 14, fontWeight: 300, }}>Find</p>
            <p style={{color:"#363C4A", textAlign:"center",
@@ -232,7 +275,7 @@ const QuizTableOfElements: React.FC = () => {
       <Button onClick={numberButtonToggle} variant="ghost" style={{color: numberActive ? "#363C4A" : "#363C4A50"}} className={styles.legendButton}>1</Button>
       <Button onClick={symbolButtonToggle} variant="ghost" style={{color: symbolActive ? "#363C4A" : "#363C4A50"}} className={styles.legendButton}>H</Button>
     </div>
-{canPlay && <Button disabled={!canPlay} onClick={toggleIsPlaying} className={styles.startButton}>{buttonState}</Button>}
+{canPlay ? <Button disabled={!canPlay} onClick={toggleIsPlaying} className={styles.startButton}>{buttonState}</Button> : <h6 className={styles.info}>{level}</h6>}
 
     <div className={styles.table}>
       {rows.map((row: Element[], rowIndex: number) => (
@@ -250,7 +293,7 @@ const QuizTableOfElements: React.FC = () => {
                   isGreen={greenCards.has(item?.name || "no name")} // Check if this card is in greenCards
                   symbol={symbolActive ? item.symbol : ""}
                   number={numberActive ? item.number : 0}
-                  category={item?.category}
+                  category={item?.category || ""}
                   onSlotElementPress={function (name: string): void {
                     if(name === "no name" || !isRunning) return; // without this empty cards turnn red. so do nothing when clicked
                     if (name === target?.name) {
