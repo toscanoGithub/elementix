@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import styles from "./QuizSlotElement.module.css"
+import { getBgColorForCategory } from '@/app/helpers';
 
 // Define the interface for the element properties
 interface SlotElementProps {
@@ -9,7 +10,7 @@ interface SlotElementProps {
   appearance?: string;
   atomic_mass?: number;
   boil?: number;
-  category?: string;
+  category: string;
   "cpk-hex"?: string;
   density?: number;
   discovered_by?: string;
@@ -41,6 +42,7 @@ const SlotElement: React.FC<SlotElementProps> = ({
   number,
   symbol,
   name,
+  category,
   isRed,
   isGreen
 }) => {
@@ -53,7 +55,7 @@ const SlotElement: React.FC<SlotElementProps> = ({
   }
 
   return (
-    <div style={{backgroundColor: cardColor}} onClick={() => onSlotElementPress(name)}  className={`${styles.slotElement} `} >
+    <div style={{backgroundColor: cardColor, border: `2px solid ${getBgColorForCategory(category)}`}} onClick={() => onSlotElementPress(name)}  className={`${styles.slotElement} `} >
       <div className={styles.number}>{number !== 0 ? number : ""}</div>
       <div className={styles.symbol}>{symbol}</div>
     </div>

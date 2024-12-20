@@ -27,6 +27,14 @@
 
 }
 
+.header {
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 20px; */
+
+}
+
 .tabs {
 width: 100vw;
 display: grid; place-items: center;

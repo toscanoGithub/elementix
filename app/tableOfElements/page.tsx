@@ -5,12 +5,12 @@ import React, { useState, useEffect } from 'react';
 import {elements} from "../data/elements"
 import styles from "./page.module.css"
 
-import { chunkArray, getBgColorForCategory } from '../helpers';
-import SlotElement from '../components/slot-element/SlotElement';
-import Modal from '../components/modal-element/Modal';
-import { Separator } from '@/components/ui/separator';
-import ProgressAnimation from '../components/lottie/ProgressAnimation';
-import CardElement from '../components/card-element/page';
+import { chunkArray } from '../helpers';
+import SlotElement from '../components/slot-element/SlotElement'
+import Modal from '../components/modal-element/Modal'
+import ProgressAnimation from '../components/lottie/ProgressAnimation'
+import CardElement from '../components/card-element/page'
+import { useSearchElementrContext } from '../contexts/searchElementContext';
 
 // Define the type for an Element
 interface Element {
@@ -45,6 +45,9 @@ interface Element {
 
 
 const TableOfElements: React.FC = () => {
+
+  const {target, clearTarget} = useSearchElementrContext();
+
   // Define the state variable `data` with the correct type
   const [data, setData] = useState<Element[] | any>([]);
   const [isModalOpen, setModalOpen] = useState(false);
@@ -81,9 +84,19 @@ const TableOfElements: React.FC = () => {
   // Split the data into chunks of 18
   const rows: Element[] | any = chunkArray(data, 18);
 
+
+  useEffect(() => {
+   setTimeout(() => {
+    clearTarget()
+   }, 3000);
+   
+  }, [target])
+  
+
   return (
     <>
-      
+            
+
     {
       !isLoading ? <div style={{width: "100%",  marginTop: -40, backgroundColor:"transparent"}}>
       {rows.map((row: Element[], rowIndex: number) => (
@@ -93,12 +106,13 @@ const TableOfElements: React.FC = () => {
               key={index.toString()}
               className={styles.elementWrapper}
               style={{border: item.number ? '1px solid #D1D5DB' : 'none',
+                borderRadius: 3,
                 cursor: item.number ? 'pointer' : 'default',
                
               }}
             >
   
-              <SlotElement name={item?.name} symbol={item?.symbol} number={item?.number} category={item?.category} onSlotElementPress={function (): void {
+              <SlotElement isHilighted = {item.name?.toLowerCase() === target || item.number?.toString() === target} name={item?.name} symbol={item?.symbol} number={item?.number} category={item?.category} onSlotElementPress={function (): void {
                 if(item.name) {
                   setModalData({...item})
                   openModal()

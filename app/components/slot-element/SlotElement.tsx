@@ -33,6 +33,7 @@ interface SlotElementProps {
   symbol?: string;
   xpos?: number;
   ypos?: number;
+  isHilighted: boolean
 }
 
 const SlotElement: React.FC<SlotElementProps> = ({
@@ -41,10 +42,13 @@ const SlotElement: React.FC<SlotElementProps> = ({
   category,
   name,
   symbol,
+  isHilighted,
   
 }) => {
   return (
-    <div onClick={onSlotElementPress} style={{backgroundColor: getBgColorForCategory(category)}} className={styles.slotElement} >
+    <div onClick={onSlotElementPress} style={{backgroundColor: getBgColorForCategory(category), }}
+    className={`${isHilighted ? `${styles.slotElement} ${styles.animate} ` : styles.slotElement}`}
+    >
       <div className={styles.number}>{number}</div>
       <div className={styles.symbol}>{symbol}</div>
       <div className={styles.name}>{name}</div>
