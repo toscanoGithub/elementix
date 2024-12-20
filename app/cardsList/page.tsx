@@ -7,6 +7,7 @@ import { elements } from '../data/elements'
 import styles from "./page.module.css"
 import { getBgColorForCategory } from '../helpers'
 import Link from 'next/link'
+import { useSearchElementrContext } from '../contexts/searchElementContext'
 
 interface CardProps {
   appearance?: string;
@@ -43,13 +44,15 @@ interface CardListProps {
 
 const CardsList = () =>  {
   
+  const {target, clearTarget} = useSearchElementrContext()
+
   // ref array for all the card elements
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   // Function to scroll to a specific card by its name and snap it to the center
-  const scrollToCardByName = (name: string) => {
+  const scrollToCardByForEntry = (prompt: string) => {
     // Find the card element by its name (names are unique for sure)
-    const cardIndex = filteredCards.findIndex(card => card.name?.toLowerCase().trim() === name.toLowerCase());
+    const cardIndex = filteredCards.findIndex(card => card.name?.toLowerCase().trim() === prompt || card.number?.toString() === prompt.toString());
 
     if (cardIndex === -1) {
       return;
@@ -62,8 +65,9 @@ const CardsList = () =>  {
         block: 'center', // Align the card in the center vertically
         inline: 'center', // Align the card in the center horizontally
       });
+      clearTarget()
     } else {
-      console.warn(`Card ${name} element not found!`);
+      console.warn(`Card ${prompt} is not found!`);
     }
   };
 
@@ -81,12 +85,13 @@ const CardsList = () =>  {
   }, [filteredCards]);
 
 
+  useEffect(() => {    
+    scrollToCardByForEntry(target)
+  }, [target])
   
 
   return (
-    <>
-    <button onClick={() => scrollToCardByName("francium")} style={{position: "sticky", left: 10,}}>Go to Francium</button>
-    <div style={{width: "16100%"}}  className={styles.cards}>
+  <div style={{width: "16100%"}}  className={styles.cards}>
       {
         filteredCards.map((element, index) => {          
           return <div className={styles.card} key={element.number} ref={(el) => (cardRefs.current[index] = el)} // Assign the ref for each card
@@ -157,7 +162,6 @@ const CardsList = () =>  {
       }
 
     </div>
-    </>
   )
   
 }

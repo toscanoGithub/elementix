@@ -2,18 +2,18 @@
 
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import {elements} from "../data/elements"
 import styles from "./page.module.css"
 
 import { chunkArray } from '../helpers';
-import QuizSlotElement from '../components/quiz-slot-element/QuizSlotElement';
+import QuizSlotElement from '../components/quiz-slot-element/QuizSlotElement'
 import { Button } from "@/components/ui/button"
-import { useToast } from "@/hooks/use-toast"
-import RandomPicker from '../quiz-helpers/pick-question';
-import Hud from '../components/hud/hud';
-import { getLocalStorage, setLocalStorage } from '../quiz-helpers/local-storage';
-import { useTimerContext } from '../contexts/TimerContext';
+// import { useToast } from "@/hooks/use-toast"
+import RandomPicker from '../quiz-helpers/pick-question'
+import Hud from '../components/hud/hud'
+import { getLocalStorage, setLocalStorage } from '../quiz-helpers/local-storage'
+import { useTimerContext } from '../contexts/TimerContext'
 
 // Define the type for an Element
 interface Element {
@@ -53,7 +53,7 @@ const QuizTableOfElements: React.FC = () => {
   const [symbolActive, setSymbolActive] = useState(true)
   const [numberActive, setNumberActive] = useState(true)
   const [buttonState, setButtonState] = useState("Start")
-  const { toast } = useToast()
+  // const { toast } = useToast()
   const [canPlay, setCanPlay] = useState(false)
   const [slideAmount, setSlideAmount] = useState(-400)
   // RESET QUIZ ----- called when no more lives
@@ -121,23 +121,23 @@ const QuizTableOfElements: React.FC = () => {
 
   useEffect(() => {
     // Self-invoking function
-  (() => {
-    // Perform any initialization logic here
-    toast({
-      title: "Choose your level",
-      description: "Toggle Number and Symbol as you want",
-      style: {
-        backgroundColor: '#3C7CB0',
-        position: "fixed",
-        top: 0, 
-        left: 0, right: 0,
-        display:"flex", alignItems:"center", justifyContent:"center",
-        maxWidth: 300,
-        marginLeft: "auto",
-        marginRight: "auto"
-      },
-    })
-  })();
+  // (() => {
+  //   // Perform any initialization logic here
+  //   toast({
+  //     title: "Choose your level",
+  //     description: "Toggle Number and Symbol as you want",
+  //     style: {
+  //       backgroundColor: '#3C7CB0',
+  //       position: "fixed",
+  //       top: 0, 
+  //       left: 0, right: 0,
+  //       display:"flex", alignItems:"center", justifyContent:"center",
+  //       maxWidth: 300,
+  //       marginLeft: "auto",
+  //       marginRight: "auto"
+  //     },
+  //   })
+  // })();
 
     setData(elements)
     
