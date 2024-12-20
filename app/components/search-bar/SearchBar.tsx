@@ -57,7 +57,7 @@ const SearchBar: React.FC<searchBarProps> = ({ currentTab }) => {
         <input
           ref={inputRef} // Attach the ref to the input element
           type="text"
-          placeholder="Search..."
+          placeholder="Name or number | Gold or 79"
           value={query}
           onChange={handleChange}
           className={styles.input}
