@@ -19,6 +19,7 @@
   height: 100%;
   border: 1px solid #111ccc30;
   border-radius: 30px;
+  background-color: white;
   
 }
 
@@ -69,6 +70,7 @@
 
 .summary {
   padding-top: 12vh;
+  background-color: white;
 }
 
 .cardBody {
@@ -79,9 +81,12 @@
 }
 
 .summary p {
-  text-align: left !important;
+  text-align: left;
   align-self: flex-start;
   font-size: 12px;
+  color: black;
+  padding-left: 5px;
+  padding-right: 5px;
   
 }
 
@@ -89,6 +94,7 @@
   flex: 1;
   padding-bottom: 30px;
   height: 100%;
+  background-color: white;
   
 }
 
@@ -121,6 +127,7 @@
   font-size: 10px;
   height: 20px;
   padding-bottom: 15px;
+  padding-top: 15px;
 
   
 }
@@ -128,6 +135,9 @@
 .row p {
   overflow-x: scroll;
   text-wrap: nowrap;
+  color: black;
+  font-weight: 100;
+  font-size: 10px;
 }
 
 

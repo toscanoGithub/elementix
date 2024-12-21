@@ -55,10 +55,12 @@ const SlotElement: React.FC<SlotElementProps> = ({
   }
 
   return (
-    <div style={{backgroundColor: cardColor, border: `2px solid ${getBgColorForCategory(category)}`}} onClick={() => onSlotElementPress(name)}  className={`${styles.slotElement} `} >
+    
+      category ? <div style={{backgroundColor: cardColor, border: `2px solid ${getBgColorForCategory(category)}`}} onClick={() => onSlotElementPress(name)}  className={`${styles.slotElement} `} >
       <div className={styles.number}>{number !== 0 ? number : ""}</div>
       <div className={styles.symbol}>{symbol}</div>
-    </div>
+    </div> : null
+    
   );
 };
 

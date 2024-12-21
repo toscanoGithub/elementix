@@ -15,7 +15,7 @@ const Timer: React.FC = () => {
   return (
     <div style={{display:"flex",  flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
       <h2>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h2>
-      <Image width={20} height={20}  src={require("../../clock.png")} alt={"Clock"} />
+      <Image style={{opacity: 0.5}} width={20} height={20}  src={require("../../clock.png")} alt={"Clock"} />
       
     </div>
   );

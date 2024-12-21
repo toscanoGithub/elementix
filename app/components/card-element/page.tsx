@@ -66,40 +66,40 @@ const CardElement: React.FC<CardProps> = ({number, name, symbol, category, summa
           <div  className={styles.caracteristics}>
               <div className={styles.caracteristicsHeader}>
               <h3 style={{color: "#1D2338", fontSize: 12}}>Caracteristics</h3>
-              <Link style={{paddingLeft: 5, paddingRight: 5, fontSize: 10, backgroundColor: getBgColorForCategory(category)}} target='_blank' href={source || "#"}>More on {name}</Link>
+              <Link style={{textDecoration:"underline", paddingLeft: 5, paddingRight: 5, fontSize: 10, backgroundColor: getBgColorForCategory(category)}} target='_blank' href={source || "#"}>More on {name}</Link>
               </div>
             <div style={{backgroundColor: getBgColorForCategory(category)}} className={styles.table}>
               <div  className={styles.row}>
-                  <p style={{fontSize: 8, fontWeight: 700}}>Atomic mass</p>
+                  <p>Atomic mass</p>
                   <p>{atomic_mass}</p>
               </div>
-              <Separator />
+              <Separator className="bg-slate-300" />
               
               <div  className={styles.row}>
-                  <p style={{fontSize: 8, fontWeight: 700}}>Standard state</p>
+                  <p>Standard state</p>
                   <p>{phase}</p>
               </div>
-              <Separator />
+              <Separator className="bg-slate-300" />
               <div  className={styles.row}>
-                  <p style={{fontSize: 8, fontWeight: 700, }}>Electron config</p>
+                  <p >Electron config</p>
                   <p>{electron_configuration}</p>
               </div>
-              <Separator />
+              <Separator className="bg-slate-300" />
               <div  className={styles.row}>
-                  <p style={{fontSize: 8, fontWeight: 700,}}>Electronegativity (Pauling Scale)</p>
+                  <p>Electronegativity (Pauling Scale)</p>
                   <p>{electronegativity_pauling}</p>
               </div>
-              <Separator />
+              <Separator className="bg-slate-300" />
               <div  className={styles.row}>
-                  <p style={{fontSize: 8, fontWeight: 700}}>Density</p>
+                  <p>Density</p>
                   <p>{density}</p>
               </div>
-              <Separator />
+              <Separator className="bg-slate-300" />
               <div  className={styles.row}>
-                  <p style={{fontSize: 8, fontWeight: 700}}>Density</p>
+                  <p >Discovered by</p>
                   <p>{discovered_by}</p>
               </div>
-              <Separator />
+              <Separator className="bg-slate-300" />
 
           
 
