@@ -94,11 +94,11 @@ const TableOfElements: React.FC = () => {
   
 
   return (
-    <>
+    <div className={styles.table}>
             
 
     {
-      !isLoading ? <div style={{width: "100%",  marginTop: -40, backgroundColor:"transparent"}}>
+      !isLoading ? <div style={{width: "100%",  backgroundColor:"transparent"}}>
       {rows.map((row: Element[], rowIndex: number) => (
         <div key={rowIndex} style={{ display: 'flex', justifyContent: 'center', width:"100vw" }}>
           {row.map((item: Element, index: number) => (
@@ -136,7 +136,7 @@ const TableOfElements: React.FC = () => {
       </Modal>
     </div> : <div className={styles.progressAnimationWrapper}><ProgressAnimation progress={10} /></div>
     }
-  </>
+  </div>
   );
 };
 

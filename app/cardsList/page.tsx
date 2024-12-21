@@ -8,6 +8,7 @@ import styles from "./page.module.css"
 import { getBgColorForCategory } from '../helpers'
 import Link from 'next/link'
 import { useSearchElementrContext } from '../contexts/searchElementContext'
+import { Separator } from '@/components/ui/separator'
 
 interface CardProps {
   appearance?: string;
@@ -117,33 +118,42 @@ const CardsList = () =>  {
           <div  className={styles.caracteristics}>
               <div className={styles.caracteristicsHeader}>
               <h3 style={{color: "#1D2338", fontSize: 12}}>Caracteristics</h3>
-              <Link style={{paddingLeft: 5, paddingRight: 5, fontSize: 10, backgroundColor: getBgColorForCategory(element.category)}} target='_blank' href={element?.source || "#"}>More on {element.name}</Link>
+              <Link style={{textDecoration:"underline", paddingLeft: 5, paddingRight: 5, fontSize: 10, backgroundColor: getBgColorForCategory(element.category)}} target='_blank' href={element?.source || "#"}>More on {element.name}</Link>
               </div>
             <div style={{backgroundColor: getBgColorForCategory(element.category)}} className={styles.table}>
               <div  className={styles.row}>
-                  <p style={{fontSize: 8, fontWeight: 700}}>Atomic mass</p>
+                  <p >Atomic mass</p>
                   <p>{element.atomic_mass}</p>
               </div>
+              <Separator />
+
               <div  className={styles.row}>
-                  <p style={{fontSize: 8, fontWeight: 700}}>Standard state</p>
+                  <p >Standard state</p>
                   <p>{element.phase}</p>
               </div>
+              <Separator />
+
               <div  className={styles.row}>
-                  <p style={{fontSize: 8, fontWeight: 700, }}>Electron config</p>
+                  <p >Electron config</p>
                   <p>{element.electron_configuration}</p>
               </div>
+              <Separator />
+
 
               <div  className={styles.row}>
-                  <p style={{fontSize: 8, fontWeight: 700,}}>Electronegativity (Pauling Scale)</p>
+                  <p>Electronegativity (Pauling Scale)</p>
                   <p>{element.electronegativity_pauling}</p>
               </div>
+              <Separator />
 
               <div  className={styles.row}>
-                  <p style={{fontSize: 8, fontWeight: 700}}>Density</p>
+                  <p>Density</p>
                   <p>{element.density}</p>
               </div>
+              <Separator />
+
               <div  className={styles.row}>
-                  <p style={{fontSize: 8, fontWeight: 700}}>Density</p>
+                  <p >Discovered by</p>
                   <p>{element.discovered_by}</p>
               </div>
 

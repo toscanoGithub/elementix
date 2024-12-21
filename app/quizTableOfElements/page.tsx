@@ -80,7 +80,7 @@ const QuizTableOfElements: React.FC = () => {
 
     if(buttonState === "Start") {
       setButtonState("Quit")
-      setSlideAmount(-170)
+      setSlideAmount(-160)
       startTimer()
        // QuizLogic
        setTimeout(() => {
@@ -261,11 +261,10 @@ const QuizTableOfElements: React.FC = () => {
     <div style={{position: "relative", width:"100vw", marginTop: -20}}>
 {/* This view will toggle visibility  */}
 <div style={{top: slideAmount, position:"relative"}} className={styles.slidingPanel} >
-  <h6 style={{position: "absolute", left: 0, top: 50, backgroundColor: "#ffffff", fontSize: 12, padding: "0 8px", borderRadius: 2}}>{level}</h6>
-        <p style={{color:"#363C4A", textAlign:"center",
-           fontSize: 14, fontWeight: 300, }}>Find</p>
+  <h6 style={{position: "absolute", left: 0, top: 35, backgroundColor: "#ffffff", fontSize: 12, padding: "0 8px", borderRadius: 2}}>{level}</h6>
+        <p style={{color:"#ffffff", fontSize: 12, fontWeight: 200}}>Find</p>
            <p style={{color:"#363C4A", textAlign:"center",
-          fontSize:24, fontWeight: 900, marginTop: -8,}}>{target?.name}</p>
+          fontSize:28, fontWeight: 900, marginTop: -8,}}>{target?.name}</p>
 
           <div className={styles.hud}>
             <Hud score={score} highscore={bestScore} lives={lives}/>

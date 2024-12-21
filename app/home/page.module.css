@@ -4,22 +4,28 @@
 }
 
 .container h2 {
-    color: red;
-    font-size: 20px;
-    line-height: 30px;
+    color: #F4F4F5;
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 700;
 }
 
-.container p {
+.main p {
     text-align: left;
-    font-weight: 200;
-    font-size: small
+    font-weight: 100;
+    font-size: 14px;
+    color: #F3FAFA99;
 }
+
+
 
 .footer {
-    background-color: #3C7CB0;
+    background-color: #0669B140;
     display: grid;
     place-items: center;
-    flex: 1;
+    border-radius: 20px;
+    margin-top: 30px;
+    
 
 }
 
